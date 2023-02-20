@@ -8,8 +8,8 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class MainApp {
     public static void main(String[] args) {
-//        WebDriver driver = new ChromeDriver();
-        WebDriver driver = new EdgeDriver();
+        WebDriver driver = new ChromeDriver();
+      //  WebDriver driver = new EdgeDriver();
         //WebDriver driver = new SafariDriver();
 
         driver.get("https://www.google.com");
