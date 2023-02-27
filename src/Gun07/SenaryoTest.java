@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class SenaryoTest extends BaseDriver {
 
     @Test
@@ -40,7 +42,21 @@ public class SenaryoTest extends BaseDriver {
         zipcode.sendKeys("06790");
         WebElement contiune=driver.findElement(By.xpath("//input[@id='continue']"));
         contiune.click();
-        WebElement fiyat=driver.findElement(By.xpath("//div[@class='summary_subtotal_label']"));
+
+        List<WebElement> fiyat=driver.findElements(By.xpath("//div[@class='inventory_item_price']"));
+        double toplam=0;
+        for(WebElement e : fiyat){
+            System.out.println(e.getText());
+            toplam=toplam+Double.parseDouble(e.getText().substring(1));
+        }
+        System.out.println("toplam="+toplam);
+        WebElement totalfiyat=driver.findElement(By.xpath("//div[@class='summary_subtotal_label']"));
+        System.out.println(totalfiyat.getText());
+        System.out.println(totalfiyat.getText().replaceAll("[^0-9,.]",""));
+        Double alttoplam=Double.parseDouble(totalfiyat.getText().replaceAll("[^0-9,.]",""));
+        Assert.assertTrue("Değerler eşit değil",toplam==alttoplam);
+        BekleKapat();
+
 
 
 
